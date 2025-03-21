@@ -108,11 +108,26 @@
         .step:hover .toggle-btn .indicator:not(.clicked) {
             content: '-'; /* Change to minus on hover */
         }
+
+        .step.highlight {
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .free-tag {
+            background-color: #D4F530; /* Highlight color */
+            color: #0D0D0D; /* Dark text */
+            font-weight: bold;
+            font-size: 0.9em;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="flowchart">
-        <div class="step">
+        <div class="step highlight">
             <div class="dot"></div>
             <div class="step-content">
                 <div class="icon">
@@ -120,13 +135,14 @@
                 </div>
                 <div class="text">
                     <div class="title toggle-btn">
-                        <span class="indicator">+</span> Discovery Call
+                        <span class="indicator">+</span> Discovery Call 
+                        <span class="free-tag">FREE</span>
                     </div>
                     <div class="description">We kick things off with a quick chat to understand your goals and ideas—no pressure, just clarity.</div>
                 </div>
             </div>
         </div>
-        <div class="step">
+        <div class="step highlight">
             <div class="dot"></div>
             <div class="step-content">
                 <div class="icon">
@@ -134,7 +150,8 @@
                 </div>
                 <div class="text">
                     <div class="title toggle-btn">
-                        <span class="indicator">+</span> Initial Creative Spark
+                        <span class="indicator">+</span> Initial Creative Spark 
+                        <span class="free-tag">FREE</span>
                     </div>
                     <div class="description">You’ll get a free script draft, preliminary storyboard, and a peek at the look and feel, tailored to your project.</div>
                 </div>
