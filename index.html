@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Flowchart</title>
+    <!-- Include DM Sans font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Include Lottie player for animated icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-player/2.0.4/lottie-player.min.js"></script>
+    <style>
+        body {
+            background: #F4F4F4; /* Light background */
+            font-family: 'DM Sans', sans-serif;
+            color: #0D0D0D; /* Dark text */
+            margin: 0;
+            padding: 40px;
+        }
+
+        .flowchart {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 40px 1fr; /* Dot | Content */
+            gap: 20px;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #0D0D0D; /* Changed to match dark text color */
+            justify-self: center;
+            align-self: start;
+            margin-top: 12px; /* Adjusted to align with title */
+        }
+
+        /* Connecting line between dots, except for the last step */
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 19px; /* Centers 2px line in 40px column */
+            top: 16px; /* Adjusted to align with the bottom of the dot */
+            width: 2px;
+            height: calc(100% + 40px - 16px); /* Extends to next step */
+            background: #0D0D0D; /* Changed to match dark text color */
+            z-index: -1; /* Behind content */
+        }
+
+        .step-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            margin-right: 20px;
+        }
+
+        .icon lottie-player {
+            width: 50px;
+            height: 50px;
+            pointer-events: none; /* Prevent direct interaction */
+        }
+
+        .text .title {
+            font-weight: 700; /* Bold */
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            cursor: pointer; /* Indicates clickable */
+        }
+
+        .text .description {
+            font-weight: 400; /* Regular */
+            font-size: 1em;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Show description on hover or when active */
+        .step:hover .description,
+        .step.active .description { 
+            max-height: 200px; /* Adjust based on content */
+            opacity: 1;
+        }
+
+        .toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-btn .indicator {
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .step:hover .toggle-btn .indicator:not(.clicked) {
+            content: '-'; /* Change to minus on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="flowchart">
+        <div class="step">
+            <div class="dot"></div>
+            <div class="step-content">
+                <div class="icon">
+                    <lottie-player src="a.json" background="transparent" speed="1" loop="false"></lottie-player>
+                </div>
+                <div class="text">
+                    <div class="title toggle-btn">
+                        <span class="indicator">+</span> Discovery Call
+                    </div>
+                    <div class="description">We kick things off with a quick chat to understand your goals and ideas—no pressure, just clarity.</div>
+                </div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="dot"></div>
+            <div class="step-content">
+                <div class="icon">
+                    <lottie-player src="b.json" background="transparent" speed="1" loop="false"></lottie-player>
+                </div>
+                <div class="text">
+                    <div class="title toggle-btn">
+                        <span class="indicator">+</span> Initial Creative Spark
+                    </div>
+                    <div class="description">You’ll get a free script draft, preliminary storyboard, and a peek at the look and feel, tailored to your project.</div>
+                </div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="dot"></div>
+            <div class="step-content">
+                <div class="icon">
+                    <lottie-player src="c.json" background="transparent" speed="1" loop="false"></lottie-player>
+                </div>
+                <div class="text">
+                    <div class="title toggle-btn">
+                        <span class="indicator">+</span> Refined Results
+                    </div>
+                    <div class="description">Once we align on the direction, we dive deeper, polishing every detail to perfection.</div>
+                </div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="dot"></div>
+            <div class="step-content">
+                <div class="icon">
+                    <lottie-player src="d.json" background="transparent" speed="1" loop="false"></lottie-player>
+                </div>
+                <div class="text">
+                    <div class="title toggle-btn">
+                        <span class="indicator">+</span> Final Delivery
+                    </div>
+                    <div class="description">Your captivating animation, optimized for any platform, ready to wow your audience.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step');
+
+            steps.forEach(step => {
+                const toggleBtn = step.querySelector('.toggle-btn');
+                const indicator = toggleBtn.querySelector('.indicator');
+                const description = step.querySelector('.description');
+                const lottiePlayer = step.querySelector('lottie-player');
+
+                // Pause animation initially
+                lottiePlayer.addEventListener('load', () => {
+                    lottiePlayer.pause();
+                });
+
+                // Toggle active state and animation on click
+                toggleBtn.addEventListener('click', function() {
+                    step.classList.toggle('active');
+                    const isActive = step.classList.contains('active');
+                    indicator.textContent = isActive ? '-' : '+';
+                    indicator.classList.toggle('clicked', isActive);
+
+                    if (isActive) {
+                        lottiePlayer.play();
+                    } else {
+                        lottiePlayer.pause();
+                        lottiePlayer.seek(0); // Reset to the first frame
+                    }
+                });
+
+                // Play animation and update indicator on hover
+                step.addEventListener('mouseenter', function() {
+                    if (!step.classList.contains('active')) {
+                        lottiePlayer.play();
+                        indicator.textContent = '-';
+                    }
+                });
+
+                // Pause animation and reset indicator on mouse leave
+                step.addEventListener('mouseleave', function() {
+                    if (!step.classList.contains('active')) {
+                        lottiePlayer.pause();
+                        lottiePlayer.seek(0); // Reset to the first frame
+                        indicator.textContent = '+';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
