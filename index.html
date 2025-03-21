@@ -76,11 +76,10 @@
         }
 
         .free-tag {
-            position: absolute;
-            left: 100%;
-            margin-left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
+            position: static; /* Remove absolute positioning */
+            margin-left: 10px; /* Add spacing from the title */
+            top: auto;
+            transform: none;
             background-color: #D4F530;
             color: #0D0D0D;
             font-weight: bold;
