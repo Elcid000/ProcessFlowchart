@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Process Flowchart</title>
-    <!-- Include DM Sans font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Include Lottie player for animated icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-player/2.0.4/lottie-player.min.js"></script>
     <style>
         body {
-            background: #F4F4F4; /* Light background */
+            background: #F4F4F4;
             font-family: 'DM Sans', sans-serif;
-            color: #0D0D0D; /* Dark text */
+            color: #0D0D0D;
             margin: 0;
             padding: 40px;
         }
@@ -27,58 +25,73 @@
 
         .step {
             display: grid;
-            grid-template-columns: 40px 1fr; /* Dot | Content */
+            grid-template-columns: 40px 1fr;
             gap: 20px;
             position: relative;
             margin-bottom: 40px;
+            align-items: start;
         }
 
         .dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #0D0D0D; /* Changed to match dark text color */
+            background: #0D0D0D;
             justify-self: center;
             align-self: start;
-            margin-top: 12px; /* Adjusted to align with title */
         }
 
-        /* Connecting line between dots, except for the last step */
         .step:not(:last-child)::after {
             content: '';
             position: absolute;
-            left: 19px; /* Centers 2px line in 40px column */
-            top: 16px; /* Adjusted to align with the bottom of the dot */
+            left: 19px;
+            top: 12px;
             width: 2px;
-            height: calc(100% + 40px - 16px); /* Extends to next step */
-            background: #0D0D0D; /* Changed to match dark text color */
-            z-index: -1; /* Behind content */
+            height: calc(100% + 40px - 12px);
+            background: #0D0D0D;
+            z-index: -1;
         }
 
         .step-content {
-            display: flex;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            gap: 20px;
+            align-items: start;
         }
 
         .icon {
-            margin-right: 20px;
+            width: 50px;
         }
 
-        .icon lottie-player {
-            width: 50px;
-            height: 50px;
-            pointer-events: none; /* Prevent direct interaction */
+        .text {
+            display: flex;
+            flex-direction: column;
         }
 
         .text .title {
-            font-weight: 700; /* Bold */
-            font-size: 1.2em;
-            margin-bottom: 5px;
-            cursor: pointer; /* Indicates clickable */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .free-tag {
+            position: absolute;
+            left: 100%;
+            margin-left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #D4F530;
+            color: #0D0D0D;
+            font-weight: bold;
+            font-size: 0.9em;
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
         }
 
         .text .description {
-            font-weight: 400; /* Regular */
+            font-weight: 400;
             font-size: 1em;
             max-height: 0;
             overflow: hidden;
@@ -86,42 +99,27 @@
             transition: max-height 0.3s ease, opacity 0.3s ease;
         }
 
-        /* Show description on hover or when active */
         .step:hover .description,
-        .step.active .description { 
-            max-height: 200px; /* Adjust based on content */
+        .step.active .description {
+            max-height: 200px;
             opacity: 1;
-        }
-
-        .toggle-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .toggle-btn .indicator {
             font-size: 1.2em;
             font-weight: bold;
             cursor: pointer;
+            width: 20px;
+            text-align: center;
         }
 
         .step:hover .toggle-btn .indicator:not(.clicked) {
-            content: '-'; /* Change to minus on hover */
+            content: '-';
         }
 
         .step.highlight {
-            padding: 20px;
+            background: none; /* Remove background */
             border-radius: 8px;
-        }
-
-        .free-tag {
-            background-color: #D4F530; /* Highlight color */
-            color: #0D0D0D; /* Dark text */
-            font-weight: bold;
-            font-size: 0.9em;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-left: 10px;
         }
     </style>
 </head>
@@ -135,7 +133,8 @@
                 </div>
                 <div class="text">
                     <div class="title toggle-btn">
-                        <span class="indicator">+</span> Discovery Call 
+                        <span class="indicator">+</span>
+                        Discovery Call
                         <span class="free-tag">FREE</span>
                     </div>
                     <div class="description">We kick things off with a quick chat to understand your goals and ideas—no pressure, just clarity.</div>
@@ -150,7 +149,8 @@
                 </div>
                 <div class="text">
                     <div class="title toggle-btn">
-                        <span class="indicator">+</span> Initial Creative Spark 
+                        <span class="indicator">+</span>
+                        Initial Creative Spark
                         <span class="free-tag">FREE</span>
                     </div>
                     <div class="description">You’ll get a free script draft, preliminary storyboard, and a peek at the look and feel, tailored to your project.</div>
@@ -165,7 +165,8 @@
                 </div>
                 <div class="text">
                     <div class="title toggle-btn">
-                        <span class="indicator">+</span> Refined Results
+                        <span class="indicator">+</span>
+                        Refined Results
                     </div>
                     <div class="description">Once we align on the direction, we dive deeper, polishing every detail to perfection.</div>
                 </div>
@@ -179,7 +180,8 @@
                 </div>
                 <div class="text">
                     <div class="title toggle-btn">
-                        <span class="indicator">+</span> Final Delivery
+                        <span class="indicator">+</span>
+                        Final Delivery
                     </div>
                     <div class="description">Your captivating animation, optimized for any platform, ready to wow your audience.</div>
                 </div>
@@ -189,46 +191,36 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const steps = document.querySelectorAll('.step');
-
             steps.forEach(step => {
                 const toggleBtn = step.querySelector('.toggle-btn');
                 const indicator = toggleBtn.querySelector('.indicator');
                 const description = step.querySelector('.description');
                 const lottiePlayer = step.querySelector('lottie-player');
-
-                // Pause animation initially
                 lottiePlayer.addEventListener('load', () => {
                     lottiePlayer.pause();
                 });
-
-                // Toggle active state and animation on click
                 toggleBtn.addEventListener('click', function() {
                     step.classList.toggle('active');
                     const isActive = step.classList.contains('active');
                     indicator.textContent = isActive ? '-' : '+';
                     indicator.classList.toggle('clicked', isActive);
-
                     if (isActive) {
                         lottiePlayer.play();
                     } else {
                         lottiePlayer.pause();
-                        lottiePlayer.seek(0); // Reset to the first frame
+                        lottiePlayer.seek(0);
                     }
                 });
-
-                // Play animation and update indicator on hover
                 step.addEventListener('mouseenter', function() {
                     if (!step.classList.contains('active')) {
                         lottiePlayer.play();
                         indicator.textContent = '-';
                     }
                 });
-
-                // Pause animation and reset indicator on mouse leave
                 step.addEventListener('mouseleave', function() {
                     if (!step.classList.contains('active')) {
                         lottiePlayer.pause();
-                        lottiePlayer.seek(0); // Reset to the first frame
+                        lottiePlayer.seek(0);
                         indicator.textContent = '+';
                     }
                 });
